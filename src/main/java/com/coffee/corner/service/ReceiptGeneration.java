@@ -1,6 +1,6 @@
-package com.shop.coffee.receipt.service;
+package com.coffee.corner.service;
 
-import com.shop.coffee.receipt.model.Receipt;
+import com.coffee.corner.model.Receipt;
 
 import java.util.List;
 

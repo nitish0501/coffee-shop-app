@@ -1,24 +1,26 @@
-package com.shop.coffee.receipt;
+package com.coffee.corner;
 
-import com.shop.coffee.receipt.model.Order;
-import com.shop.coffee.receipt.model.Receipt;
-import com.shop.coffee.receipt.service.ReceiptGenerationImpl;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import com.coffee.corner.model.Order;
+import com.coffee.corner.model.Receipt;
+import com.coffee.corner.service.ReceiptGenerationImpl;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNotNull;
+import static org.junit.Assert.assertNotEquals;
 
-@SpringBootTest
-class ReceiptApplicationTests {
+
+
+public class ReceiptGenerationServiceTest {
 
     ReceiptGenerationImpl receiptGeneration = new ReceiptGenerationImpl();
 
 
     @Test
-    void orderReceiptForOneBeverageWithExtraAndWithoutStampCard() {
+    public void orderReceiptForOneBeverageWithExtraAndWithoutStampCard() {
         List<String> orderList = new ArrayList<String>();
         Order o1 = new Order("large coffee with extra milk");
         orderList.add(o1.getName());
@@ -28,7 +30,7 @@ class ReceiptApplicationTests {
     }
 
     @Test
-    void orderReceiptForOneBeverageAndWithFifthBeverageFreeStampCard() {
+    public void orderReceiptForOneBeverageAndWithFifthBeverageFreeStampCard() {
         List<String> orderList = new ArrayList<String>();
         Order o1 = new Order("large coffee");
         orderList.add(o1.getName());
@@ -38,7 +40,7 @@ class ReceiptApplicationTests {
     }
 
     @Test
-    void orderReceiptForOneBeverageWithoutExtra() {
+    public void orderReceiptForOneBeverageWithoutExtra() {
         List<String> orderList = new ArrayList<String>();
         Order o1 = new Order("large coffee");
         orderList.add(o1.getName());
@@ -48,7 +50,7 @@ class ReceiptApplicationTests {
     }
 
     @Test
-    void orderReceiptForOneBeverageWithExtraAndOneSnack() {
+    public void orderReceiptForOneBeverageWithExtraAndOneSnack() {
         List<String> orderList = new ArrayList<String>();
 
         Order o1 = new Order("large coffee with extra milk");
@@ -65,7 +67,7 @@ class ReceiptApplicationTests {
     }
 
     @Test
-    void orderReceiptForOneBeverageWithoutExtraAndOneSnack() {
+    public void orderReceiptForOneBeverageWithoutExtraAndOneSnack() {
         List<String> orderList = new ArrayList<String>();
 
         Order o1 = new Order("large coffee");
@@ -82,7 +84,7 @@ class ReceiptApplicationTests {
     }
 
     @Test
-    void mixedOrderReceiptWithFifthBeverageFreeStampCard() {
+    public void mixedOrderReceiptWithFifthBeverageFreeStampCard() {
         List<String> orderList = new ArrayList<String>();
 
         Order o1 = new Order("large coffee with extra milk");
@@ -106,7 +108,7 @@ class ReceiptApplicationTests {
     }
 
     @Test
-    void mixedOrderReceiptWithoutStampCardAndMoreThanFiveBeverages() {
+    public void mixedOrderReceiptWithoutStampCardAndMoreThanFiveBeverages() {
         List<String> orderList = new ArrayList<String>();
 
         Order o1 = new Order("large coffee with extra milk");
@@ -132,7 +134,7 @@ class ReceiptApplicationTests {
     }
 
     @Test
-    void mixedOrderReceiptWithDoubleSnacksWithoutStampCard() {
+    public void mixedOrderReceiptWithDoubleSnacksWithoutStampCard() {
         List<String> orderList = new ArrayList<String>();
 
         Order o1 = new Order("large coffee with extra milk");

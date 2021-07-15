@@ -1,7 +1,7 @@
-package com.shop.coffee.receipt.service;
+package com.coffee.corner.service;
 
-import com.shop.coffee.receipt.model.Item;
-import com.shop.coffee.receipt.model.Receipt;
+import com.coffee.corner.model.Item;
+import com.coffee.corner.model.Receipt;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -57,8 +57,7 @@ public class ReceiptGenerationImpl implements ReceiptGeneration {
             .filter(p -> "S".equals(p.getTypeProduct()))
             .count();
     //Get the minimum count for extra discount
-    long minimalDiscount = 0l;
-    minimalDiscount = getMinimumDiscount(beverageCount, snackCount);
+    long minimalDiscount = getMinimumDiscount(beverageCount, snackCount);
 
     //has Extra(E) can be for discount
     List<Item> orderDiscountable = new ArrayList<Item>();
@@ -89,29 +88,29 @@ public class ReceiptGenerationImpl implements ReceiptGeneration {
       }
     }
     if (stampCardDiscount == true && beverageCount > 0 && beverageCount <= 5) {
-      List<Item> beveregeItem = itemList.stream()
+      List<Item> beverageItem = itemList.stream()
                 .filter(p -> "B".equals(p.getTypeProduct()))
                 .collect(Collectors.toList());
-      productDiscountableTmp.add(beveregeItem.get(0));
+      productDiscountableTmp.add(beverageItem.get(0));
       itemsForDiscount = getItemsFromProductsForDiscount(productDiscountableTmp);
     } else if (stampCardDiscount == true && beverageCount > 5) {
-      List<Item> beveregeItem = itemList.stream()
+      List<Item> beverageItem = itemList.stream()
                 .filter(p -> "B".equals(p.getTypeProduct()))
                 .collect(Collectors.toList());
-      for (int i = 0; i <= beveregeItem.size(); i++) {
+      for (int i = 0; i <= beverageItem.size(); i++) {
         if (i % 5 == 0) {
-          productDiscountableTmp.add(beveregeItem.get(i));
+          productDiscountableTmp.add(beverageItem.get(i));
         }
       }
       itemsForDiscount = getItemsFromProductsForDiscount(productDiscountableTmp);
 
     } else if (stampCardDiscount == false && beverageCount > 5) {
-      List<Item> beveregeItem = itemList.stream()
+      List<Item> beverageItem = itemList.stream()
                 .filter(p -> "B".equals(p.getTypeProduct()))
                 .collect(Collectors.toList());
-      for (int i = 1; i < beveregeItem.size(); i++) {
+      for (int i = 1; i < beverageItem.size(); i++) {
         if (i % 5 == 0) {
-          productDiscountableTmp.add(beveregeItem.get(i));
+          productDiscountableTmp.add(beverageItem.get(i));
         }
       }
       itemsForDiscount = getItemsFromProductsForDiscount(productDiscountableTmp);
@@ -119,6 +118,12 @@ public class ReceiptGenerationImpl implements ReceiptGeneration {
     }
     receipt.getItems().addAll(itemsForDiscount);
     receipt.setDiscountedItems(itemsForDiscount);
+    //calculate the total  discounts
+    Double discountedTotal = 0.00;
+    for (Item i : itemsForDiscount) {
+      discountedTotal = discountedTotal + i.getPrice();
+    }
+    receipt.setTotalDiscount(discountedTotal);
 
     UUID uuid = UUID.randomUUID();
     receipt.setId(uuid.toString());
