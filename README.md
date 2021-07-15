@@ -17,8 +17,10 @@ turnaround.
 • She decides to offer a customer stamp card, where every 5th beverage is for free.
 • If a customer orders a beverage and a snack, one of the extra's is free.
 
+## 1. Prerequisites to run the program
+• Java 11 and Maven 3.8.1 version should be installed in the system
 
-## 1. Input the element in the test
+## 2. Input the element in the test
 
         list of products the shopper wants to purchase (large coffee with extra milk, small
             coffee with special roast, bacon roll, orange juice)
@@ -39,40 +41,15 @@ turnaround.
 
         Receipt receipt = receiptGeneration.generateReceipt(orderList, false);
 
-#### Pass false as the second parameter if Customer Stamp Card is not applicable for discount else pass true to avail discount on fifth Beverage.
+#### NOTE: Please pass false as the second parameter if Customer Stamp Card is not applicable for discount else pass true to avail discount on fifth Beverage.
 
-## 2. Run the test
+## 3. Run the test
 ```
  mvn test
 ```
-## 2. Expected result
+## 4. Expected result
+![ScreenShot](receipt.png?raw=true "Optional Title")
 
---------------------------------------------------
-Charlene's Coffee Corner
---------------------------------------------------
-Id Receipt: b8055514-3f12-4773-9e39-d7155a8dd15a
-Date      : Thu Jul 15 10:31:42 CEST 2021
-Item           Price
---------------------------------------------------
-large coffee : 3.5 CHF
-extra milk : 0.3 CHF
-small coffee : 2.5 CHF
-special roast : 0.9 CHF
-small coffee : 2.5 CHF
-bacon roll : 4.5 CHF
-orange juice : 3.95 CHF
-bacon roll : 4.5 CHF
-extra milk : -0.3 CHF
-special roast : -0.9 CHF
---------------------------------------------------
-Total      : 21.45 CHF
-
---------------------------------------------------
-Total Discount
-extra milk : -0.3 CHF
-special roast : -0.9 CHF
---------------------------------------------------
-Thank you. Come Again!
 
 
 
